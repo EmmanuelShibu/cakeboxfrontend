@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CakeService } from './service/cake.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cakeboxfrontend';
+
+  isLoggedIn=false
+
+  constructor(private service:CakeService){
+
+    this.isLoggedIn=this.service.isAuthenticated()
+
+  }
 }
+

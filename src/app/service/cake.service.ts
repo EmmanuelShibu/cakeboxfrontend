@@ -25,20 +25,38 @@ export class CakeService {
    }
 
    getAllCakes(){
-    return this.http.get(`${this.baseUrl}/cakes/`)
+    let header=new HttpHeaders({
+      'content-type':'application/json',
+      'Authorization':localStorage.getItem('token')??''
+    })
+    return this.http.get(`${this.baseUrl}/cakes/`,{headers:header})
    }
 
    getCakeDetail(id:any){
-    return this.http.get(`${this.baseUrl}/cakes/${id}/`)
+    let header=new HttpHeaders({
+      'content-type':'application/json',
+      'Authorization':localStorage.getItem('token')??''
+    })
+    
+    return this.http.get(`${this.baseUrl}/cakes/${id}/`,{headers:header})
    }
 
   //  url:'http://127.0.0.1:8000/api/cakes/:id/add_to_cart/' 
    addToCart(id:any){
-    return this.http.post(`${this.baseUrl}/cakes/${id}/add_to_cart/`,null)
+    let header=new HttpHeaders({
+      'content-type':'application/json',
+      'Authorization':localStorage.getItem('token')??''
+    })
+
+    return this.http.post(`${this.baseUrl}/cakes/${id}/add_to_cart/`,null,{headers:header})
    }
 
    listCart(){
-    return this.http.get(`${this.baseUrl}/carts/`)
+    let header=new HttpHeaders({
+      'content-type':'application/json',
+      'Authorization':localStorage.getItem('token')??''
+    })
+    return this.http.get(`${this.baseUrl}/carts/`,{headers:header})
    }
 
    placeOrder(id:any,data:any){
@@ -51,6 +69,10 @@ export class CakeService {
 
    addReview(id:any,data:any){
     return this.http.post(`${this.baseUrl}/cakes/${id}/add_review/`,data)
+   }
+
+   isAuthenticated(){
+    return 'token' in localStorage
    }
 
    

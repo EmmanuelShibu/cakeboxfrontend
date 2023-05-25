@@ -42,7 +42,7 @@
 .login .col-left {
     width: 60%;
     clip-path: polygon(0 0, 0% 100%, 100% 0);
-    background: #2aa15f;
+    background: #000000;
 }
 
 .login .col-right {

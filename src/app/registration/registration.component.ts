@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormGroup,FormControl} from '@angular/forms'
 import { CakeService } from '../service/cake.service';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-registration',
@@ -16,13 +17,15 @@ export class RegistrationComponent {
     password:new FormControl(),
   })
 
-  constructor(private service:CakeService){
+  constructor(private service:CakeService,private router:Router){
 
   }
 
   register(){
     let formData=this.regForm.value
-    this.service.createAccount(formData).subscribe(res=>console.log(res))
+    this.service.createAccount(formData).subscribe(res=>{
+      this.router.navigateByUrl('')
+    })
     
   }
 
